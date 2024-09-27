@@ -4,7 +4,7 @@
   "keywords": [
     "whatsapp bot"
   ],
-  "repository": "https://github.com/betingrich/Mercedes",
+  "repository": "https://github.com/marisela2/Mercedes",
   "stack": "container",
   "env": { 
       "SESSION_ID": {
