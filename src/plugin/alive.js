@@ -17,7 +17,7 @@ const alive = async (m, Matrix) => {
   if (['alive', 'uptime', 'runtime'].includes(cmd)) {
     const width = 800;
     const height = 500;
-    const image = new Jimp(width, height, 'black');
+    const image = new Jimp(width, height, 'yellow');
     const font = await Jimp.loadFont(Jimp.FONT_SANS_128_WHITE);
     const textMetrics = Jimp.measureText(font, timeString);
     const textHeight = Jimp.measureTextHeight(font, timeString, width);
@@ -26,14 +26,13 @@ const alive = async (m, Matrix) => {
     image.print(font, x, y, timeString, width, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
     const buffer = await image.getBufferAsync(Jimp.MIME_PNG);
     
-    const uptimeMessage = `*MERCEDES STATUS OVERVIEW*
-_________________________________________
-
-*📆 ${days} Day(s)*
-*🕰️ ${hours} Hour(s)*
-*⏳ ${minutes} Minute(s)*
-*⏲️ ${seconds} Second(s)*
-_________________________________________
+    const uptimeMessage = `*MERCEDES IS ACTIVE*
+╭─────═━┈┈━═──━┈⊷
+┇ *📆 ${days} Day(s)*
+┇ *⌚ ${hours} Hour(s)*
+┇ *⏰ ${minutes} Minute(s)*
+┇ *🕣 ${seconds} Second(s)*
+╰─────═━┈┈━═──━┈⊷
 `;
     
     const buttons = [
