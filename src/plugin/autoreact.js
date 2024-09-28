@@ -8,7 +8,7 @@ const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0
 const text = m.body.slice(prefix.length + cmd.length).trim();
 
   if (cmd === 'autoreact') {
-    if (!isCreator) return m.reply("*📛 THIS IS AN OWNER COMMAND*");
+    if (!isCreator) return m.reply("*THIS COMMAND IS FOR MARISEL*");
     let responseMessage;
 
     if (text === 'on') {
