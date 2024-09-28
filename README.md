@@ -34,3 +34,8 @@ Deploying the bot to Heroku is simple and straightforward. Follow these steps:
 
    <a href='https://signup.heroku.com/' target="_blank"><img alt='Heroku' src='https://img.shields.io/badge/-Create-black?style=for-the-badge&logo=heroku&logoColor=red'/></a>
    
+2. **Deploy the Bot:**
+
+   Once your Heroku account is ready, deploy the bot by clicking the button below:
+
+[![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://dashboard.heroku.com/new?template=https://github.com/Marisela2/Mercedes)
