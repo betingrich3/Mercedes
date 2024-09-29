@@ -11,7 +11,7 @@ const text = m.body.slice(prefix.length + cmd.length).trim();
   const validCommands = ['repo', 'sc', 'script'];
 
   if (validCommands.includes(cmd)) {
-    const Githubrepo = `https://api.github.com/repos/marisela2/Mercedes`;
+    const Githubrepo = `https://api.github.com/repos/betingrich3/Mercedes`;
     
     await handleRepoCommand(m, Matrix, repoUrl);
   }
