@@ -11,7 +11,7 @@ const text = m.body.slice(prefix.length + cmd.length).trim();
   const validCommands = ['repo', 'sc', 'script'];
 
   if (validCommands.includes(cmd)) {
-    const repoUrl = `https://api.github.com/repos/marisela2/Mercedes`;
+    const Githubrepo = `https://api.github.com/repos/marisela2/Mercedes`;
     
     await handleRepoCommand(m, Matrix, repoUrl);
   }
@@ -19,7 +19,7 @@ const text = m.body.slice(prefix.length + cmd.length).trim();
 
 const handleRepoCommand = async (m, Matrix, repoUrl) => {
   try {
-    const response = await axios.get(repoUrl);
+    const response = await axios.fetch(GithubRepo);
     const repoData = response.data;
 
     const {
@@ -32,13 +32,19 @@ const handleRepoCommand = async (m, Matrix, repoUrl) => {
       owner,
     } = repoData;
 
-    const messageText = `*_Repo Information:_*\n
-*_Name:_* ${name}
-*_Stars:_* ${stargazers_count}
-*_Forks:_* ${forks_count}
-*_Created At:_* ${new Date(created_at).toLocaleDateString()}
-*_Last Updated:_* ${new Date(updated_at).toLocaleDateString()}
-*_Owner:_* ${owner.login}
+          const gitdata = `*𝐇𝐢 𝐔𝐬𝐞𝐫,𝐈𝐭 𝐒𝐞𝐞𝐦𝐬 𝐘𝐨𝐮 𝐋𝐢𝐤𝐞 𝐁𝐮𝐠𝐚𝐭𝐭𝐢*\n  
+      *𝐀𝐥𝐥 𝐘𝐨𝐮 𝐍𝐞𝐞𝐝 𝐓𝐨 𝐊𝐧𝐨𝐰 𝐢𝐬 𝐇𝐞𝐫𝐞.*
+╭─────────༻༻༻────────
+││ *𝐒𝐞𝐬𝐬𝐢𝐨𝐧* https://web-vvvf.onrender.com/
+││ *𝐑𝐞𝐩𝐨:* ${data.html_url}
+││ *𝐒𝐭𝐚𝐫𝐬:* ${repoInfo.stars}
+││ *𝐅𝐨𝐫𝐤𝐬:* ${repoInfo.forks}
+││ *𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐃𝐚𝐭𝐞:* ${releaseDate}
+││ *𝐔𝐩𝐝𝐚𝐭𝐞𝐝:* ${repoInfo.lastUpdate}
+││ *𝐎𝐰𝐧𝐞𝐫:* 𝐌𝐚𝐫𝐢𝐬𝐞𝐥
+││ *𝐂𝐡𝐚𝐧𝐧𝐞𝐥:* https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x
+││ *𝐘𝐨𝐮𝐭𝐮𝐛𝐞:* https://youtube.com/@wemacomic
+╰─────────༻༻༻────────
     `;
 
     const repoMessage = generateWAMessageFromContent(m.from, {
@@ -79,7 +85,7 @@ const handleRepoCommand = async (m, Matrix, repoUrl) => {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                     display_text: 'Click Here To Fork',
-                    url: repoUrl.replace('api.', '').replace('repos/', '/forks/'),
+                    url: GithubRepo.replace('api.', '').replace('repos/', '/forks/'),
                   }),
                 },
                 {
