@@ -40,15 +40,15 @@ const alive = async (m, Matrix) => {
       {
         "name": "quick_reply",
         "buttonParamsJson": JSON.stringify({
-          display_text: "𝚘𝚠𝚗𝚎𝚛",
+          display_text: "Owner",
           id: `${prefix}owner`
         })
       },
       {
         "name": "quick_reply",
         "buttonParamsJson": JSON.stringify({
-          display_text: "𝙶𝚒𝚝𝙷𝚞𝚋",
-          id: `https://github.com/joeljamestech/JOEL-MD`
+          display_text: "Github",
+          id: `https://github.com/betingrich3/Mercedes`
         })
       }
     ];
@@ -65,7 +65,7 @@ const alive = async (m, Matrix) => {
               text: uptimeMessage
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: "𝚙𝚘𝚠𝚎𝚛𝚎𝚍 𝚋𝚢 𝙹𝙾𝚎𝚕 𝚔𝚊𝚗𝚐'𝚘𝚖𝚊"
+              text: "Powered By Mercedes"
             }),
             header: proto.Message.InteractiveMessage.Header.create({
               ...(await prepareWAMessageMedia({ image: buffer }, { upload: Matrix.waUploadToServer })),
@@ -82,8 +82,8 @@ const alive = async (m, Matrix) => {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '255714595078@s.whatsapp.net',
-                newsletterName: "JOel",
+                newsletterJid: '120363299029326322@newsletter',
+                newsletterName: "Mercedes",
                 serverMessageId: 143
               }
             }
