@@ -88,15 +88,15 @@ const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0
           },
           interactiveMessage: proto.Message.InteractiveMessage.create({
             body: proto.Message.InteractiveMessage.Body.create({
-              text: `╭─────────────━┈⊷
-│🤖 ʙᴏᴛ ɴᴀᴍᴇ: *Mercedes*
-│📍 ᴠᴇʀꜱɪᴏɴ: 2.0.0
-│👨‍💻 ᴏᴡɴᴇʀ : *Marisel*      
-│👤 ɴᴜᴍʙᴇʀ: 254740007567
-│📡 ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
+              text: `╭────────────────❒━┈⊷
+│🛹 ʙᴏᴛ ɴᴀᴍᴇ: *Mercedes*
+│🕹️ ᴠᴇʀꜱɪᴏɴ: 2.0.0
+│🪀 ᴏᴡɴᴇʀ : *Marisel*      
+│🧾 ɴᴜᴍʙᴇʀ: 254740007567
+│🏮 ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
 │🛡 ᴍᴏᴅᴇ: *${mode}*
-│💫 ᴘʀᴇғɪx: [${pref}]
-╰─────────────━┈⊷ `
+│🧮 ᴘʀᴇғɪx: [${pref}]
+╰────────────────❒━┈⊷ `
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
               text: "© Powered By Mercedes"
@@ -134,61 +134,61 @@ const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0
                     "rows":[
                       {
                        "header":"",
-                       "title":"🔰 ᴀʟʟ ᴍᴇɴᴜ",
+                       "title":"🛹 ᴀʟʟ ᴍᴇɴᴜ",
                        "description":"Mercedes All Menu",
                        "id":"View All Menu"
                       },
                       {
                         "header":"",
-                        "title":"⬇️ ᴅᴏᴡɴʟᴀᴏᴅᴇʀ ᴍᴇɴᴜ",
-                        "description":"📂Show All Download Features🗂",
+                        "title":"🪀 ᴅᴏᴡɴʟᴀᴏᴅᴇʀ ᴍᴇɴᴜ",
+                        "description":"🖱️Show All Download Features🗂",
                         "id":"Downloader Menu"
                       },
                       {
                         "header":"",
-                        "title":"👨‍👨‍👧‍👧ɢʀᴏᴜᴘ ᴍᴇɴᴜ",
+                        "title":"🏮ɢʀᴏᴜᴘ ᴍᴇɴᴜ",
                         "description":"Only Group Commands",
                         "id":"Group Menu"
                       },
                       {
                         "header":"",
-                        "title":"👨‍🔧 ᴛᴏᴏʟ ᴍᴇɴᴜ",
+                        "title":"📟 ᴛᴏᴏʟ ᴍᴇɴᴜ",
                         "description":"All Tools Menu",
                         "id":"Tool Menu"
                       },
                       {
                         "header":"",
-                        "title":"🗿 ᴍᴀɪɴ ᴍᴇɴᴜ",
+                        "title":"🖲️ ᴍᴀɪɴ ᴍᴇɴᴜ",
                         "description":"📪 Bot Main Commands🗳",
                         "id":"Main Menu"
                       },
                      {
                         "header":"",
-                        "title":"👨‍💻 ᴏᴡɴᴇʀ ᴍᴇɴᴜ",
+                        "title":"🪀 ᴏᴡɴᴇʀ ᴍᴇɴᴜ",
                         "description":"Only Marisel's Commands",
                         "id":"Owner Menu"
                       },
                       {
                         "header":"",
-                        "title":"✨ ᴀɪ ᴍᴇɴᴜ",
+                        "title":"🛴 ᴀɪ ᴍᴇɴᴜ",
                         "description":"Artificial Intelligence Menu",
                         "id":"Ai Menu"
                       },
                       {
                         "header":"",
-                        "title":"🔍sᴇᴀʀᴄʜ ᴍᴇɴᴜ🔎",
+                        "title":"🛼sᴇᴀʀᴄʜ ᴍᴇɴᴜ🛼",
                         "description":"Search Anything Here",
                         "id":"Search Menu"
                       },
                       {
                         "header":"",
-                        "title":"🧚‍♂️ sᴛᴀʟᴋ ᴍᴇɴᴜ",
+                        "title":"🪃 sᴛᴀʟᴋ ᴍᴇɴᴜ",
                         "description":"Stalk Anyone Here",
                         "id":"Stalk Menu"
                       },
                       {
                         "header":"",
-                        "title":"🥏 𝚌𝚘𝚗𝚟𝚎𝚛𝚝𝚎𝚛 𝚖𝚎𝚗𝚞",
+                        "title":"🧩 𝚌𝚘𝚗𝚟𝚎𝚛𝚝𝚎𝚛 𝚖𝚎𝚗𝚞",
                         "description":"Convert Anything Here",
                         "id":"Converter Menu"
                       }
@@ -219,15 +219,15 @@ const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0
   }
       if (selectedId == "View All Menu") {
         const str = `Hello ${m.pushName} ${pushwish}
-╭─────────────━┈⊷
-│🤖 ʙᴏᴛ ɴᴀᴍᴇ: *Mercedes*
-│📍 ᴠᴇʀꜱɪᴏɴ: 2.0.3
-│👨‍💻 ᴏᴡɴᴇʀ : *Marisel*      
-│👤 ɴᴜᴍʙᴇʀ: 254740007567
-│💻 ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
+╭────────────────❒━┈⊷
+│🛹 ʙᴏᴛ ɴᴀᴍᴇ: *Mercedes*
+│🕹️ ᴠᴇʀꜱɪᴏɴ: 2.0.3
+│🪀 ᴏᴡɴᴇʀ : *Marisel*      
+│🧾 ɴᴜᴍʙᴇʀ: 254740007567
+│🏮 ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
 │🛡 ᴍᴏᴅᴇ: *${config.MODE}*
-│💫 ᴘʀᴇғɪx: [${pref}]
-╰─────────────━┈⊷ 
+│🧮 ᴘʀᴇғɪx: [${pref}]
+╰────────────────❒━┈⊷ 
 ╭━❮ 𝙲𝙾𝙽𝚅𝙴𝚁𝚃𝙴𝚁 ❯━╮
 ┃✰ ${prefix}𝙰𝚃𝚃𝙿
 ┃✰ ${prefix}𝙰𝚃𝚃𝙿2
