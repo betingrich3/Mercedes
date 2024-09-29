@@ -12,7 +12,7 @@ To get started with Mercedes, follow these steps:
 
 Start by forking this repository to your own GitHub account. Click the button below to fork:
 
-<a href='https://github.com/Marisela2/Mercedes/fork' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/Fork This Repo-black?style=for-the-badge&logo=git&logoColor=white'/></a>
+<a href='https://github.com/betingrich3/Mercedes/fork' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/Fork This Repo-black?style=for-the-badge&logo=git&logoColor=white'/></a>
 
 ### 2. Get Session ID via Pair Code
 
@@ -38,4 +38,4 @@ Deploying the bot to Heroku is simple and straightforward. Follow these steps:
 
    Once your Heroku account is ready, deploy the bot by clicking the button below:
 
-[![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://dashboard.heroku.com/new?template=https://github.com/Marisela2/Mercedes)
+[![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://dashboard.heroku.com/new?template=https://github.com/betingrich3/Mercedes)
