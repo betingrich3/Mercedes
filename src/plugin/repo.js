@@ -1,121 +1,101 @@
-import pkg, { prepareWAMessageMedia } from '@whiskeysockets/baileys';
-const { generateWAMessageFromContent, proto } = pkg;
-import axios from 'axios';
 import config from '../../config.cjs';
+import pkg, { prepareWAMessageMedia } from '@whiskeysockets/baileys';
+import Jimp from 'jimp';
+const { generateWAMessageFromContent, proto } = pkg;
 
-const searchRepo = async (m, Matrix) => {
+const alive = async (m, Matrix) => {
+  const uptimeSeconds = process.uptime();
+  const days = Math.floor(uptimeSeconds / (3600 * 24));
+  const hours = Math.floor((uptimeSeconds % (3600 * 24)) / 3600);
+  const minutes = Math.floor((uptimeSeconds % 3600) / 60);
+  const seconds = Math.floor(uptimeSeconds % 60);
+  const timeString = `${String(days).padStart(2, '0')}-${String(hours).padStart(2, '0')}-${String(minutes).padStart(2, '0')}-${String(seconds).padStart(2, '0')}`;
   const prefix = config.PREFIX;
-const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-const text = m.body.slice(prefix.length + cmd.length).trim();
+  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
+  const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  const validCommands = ['repo', 'sc', 'script'];
-
-  if (validCommands.includes(cmd)) {
-    const Githubrepo = `https://api.github.com/repos/betingrich3/Mercedes`;
+  if (['repo', 'sc', 'deploy'].includes(cmd)) {
+    const width = 800;
+    const height = 500;
+    const image = new Jimp(width, height, 'black');
+    const font = await Jimp.loadFont(Jimp.FONT_SANS_128_WHITE);
+    const textMetrics = Jimp.measureText(font, timeString);
+    const textHeight = Jimp.measureTextHeight(font, timeString, width);
+    const x = (width / 2) - (textMetrics / 2);
+    const y = (height / 2) - (textHeight / 2);
+    image.print(font, x, y, timeString, width, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+    const buffer = await image.getBufferAsync(Jimp.MIME_PNG);
     
-    await handleRepoCommand(m, Matrix, repoUrl);
-  }
-};
-
-const handleRepoCommand = async (m, Matrix, repoUrl) => {
-  try {
-    const response = await axios.fetch(GithubRepo);
-    const repoData = response.data;
-
-    const {
-      full_name,
-      name,
-      forks_count,
-      stargazers_count,
-      created_at,
-      updated_at,
-      owner,
-    } = repoData;
-
-          const gitdata = `*𝐇𝐢 𝐔𝐬𝐞𝐫,𝐈𝐭 𝐒𝐞𝐞𝐦𝐬 𝐘𝐨𝐮 𝐋𝐢𝐤𝐞 𝐁𝐮𝐠𝐚𝐭𝐭𝐢*\n  
-      *𝐀𝐥𝐥 𝐘𝐨𝐮 𝐍𝐞𝐞𝐝 𝐓𝐨 𝐊𝐧𝐨𝐰 𝐢𝐬 𝐇𝐞𝐫𝐞.*
-╭─────────༻༻༻────────
-││ *𝐒𝐞𝐬𝐬𝐢𝐨𝐧* https://web-vvvf.onrender.com/
-││ *𝐑𝐞𝐩𝐨:* ${data.html_url}
-││ *𝐒𝐭𝐚𝐫𝐬:* ${repoInfo.stars}
-││ *𝐅𝐨𝐫𝐤𝐬:* ${repoInfo.forks}
-││ *𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐃𝐚𝐭𝐞:* ${releaseDate}
-││ *𝐔𝐩𝐝𝐚𝐭𝐞𝐝:* ${repoInfo.lastUpdate}
+    const uptimeMessage = `*MERCEDES REPO*
+┏━━━━━━━━━━━━━━⭕━━⭕━━━━━━━━━━━━
+││ *𝐒𝐞𝐬𝐬𝐢𝐨𝐧* https://shorturl.at/SJBuI
+││ *𝐑𝐞𝐩𝐨:* https://shorturl.at/GkbOj
 ││ *𝐎𝐰𝐧𝐞𝐫:* 𝐌𝐚𝐫𝐢𝐬𝐞𝐥
-││ *𝐂𝐡𝐚𝐧𝐧𝐞𝐥:* https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x
-││ *𝐘𝐨𝐮𝐭𝐮𝐛𝐞:* https://youtube.com/@wemacomic
-╰─────────༻༻༻────────
-    `;
+││ *𝐂𝐡𝐚𝐧𝐧𝐞𝐥:* https://shorturl.at/DFtz3
+││ *𝐘𝐨𝐮𝐭𝐮𝐛𝐞:* https://shorturl.at/h45nS
+┗━━━━━━━━━━━━━━⭕━━⭕━━━━━━━━━━━━
+`;
+    
+    const buttons = [
+      {
+        "name": "quick_reply",
+        "buttonParamsJson": JSON.stringify({
+          display_text: "𝚘𝚠𝚗𝚎𝚛",
+          id: `${prefix}owner`
+        })
+      },
+      {
+        "name": "quick_reply",
+        "buttonParamsJson": JSON.stringify({
+          display_text: "𝙶𝚒𝚝𝙷𝚞𝚋",
+          id: `https://github.com/joeljamestech/JOEL-MD`
+        })
+      }
+    ];
 
-    const repoMessage = generateWAMessageFromContent(m.from, {
+    const msg = generateWAMessageFromContent(m.from, {
       viewOnceMessage: {
         message: {
           messageContextInfo: {
             deviceListMetadata: {},
-            deviceListMetadataVersion: 2,
+            deviceListMetadataVersion: 2
           },
           interactiveMessage: proto.Message.InteractiveMessage.create({
             body: proto.Message.InteractiveMessage.Body.create({
-              text: messageText,
+              text: uptimeMessage
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '© Powered By Mercedes',
+              text: "𝚙𝚘𝚠𝚎𝚛𝚎𝚍 𝚋𝚢 𝙹𝙾𝚎𝚕 𝚔𝚊𝚗𝚐'𝚘𝚖𝚊"
             }),
             header: proto.Message.InteractiveMessage.Header.create({
-              ...(await prepareWAMessageMedia({
-                image: {
-                  url: 'https://ibb.co/NyRPxXs',
-                },
-              }, { upload: Matrix.waUploadToServer })),
-              title: '',
-              gifPlayback: true,
-              subtitle: '',
-              hasMediaAttachment: false,
+              ...(await prepareWAMessageMedia({ image: buffer }, { upload: Matrix.waUploadToServer })),
+              title: ``,
+              gifPlayback: false,
+              subtitle: "",
+              hasMediaAttachment: false
             }),
             nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'quick_reply',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: 'Contact Owner',
-                    id: `${prefix}owner`,
-                  }),
-                },
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: 'Click Here To Fork',
-                    url: GithubRepo.replace('api.', '').replace('repos/', '/forks/'),
-                  }),
-                },
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: 'Join Our Community',
-                    url: 'https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x',
-                  }),
-                },
-              ],
+              buttons
             }),
             contextInfo: {
-              mentionedJid: [m.sender],
-              forwardingScore: 9999,
+              quotedMessage: m.message,
+              forwardingScore: 999,
               isForwarded: true,
-            },
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: '255714595078@s.whatsapp.net',
+                newsletterName: "JOel",
+                serverMessageId: 143
+              }
+            }
           }),
         },
       },
     }, {});
 
-    await Matrix.relayMessage(repoMessage.key.remoteJid, repoMessage.message, {
-      messageId: repoMessage.key.id,
+    await Matrix.relayMessage(msg.key.remoteJid, msg.message, {
+      messageId: msg.key.id
     });
-    await m.React('✅');
-  } catch (error) {
-    console.error('Error processing your request:', error);
-    m.reply('Error processing your request.');
-    await m.React('❌');
   }
 };
 
-export default searchRepo;
+export default alive;
