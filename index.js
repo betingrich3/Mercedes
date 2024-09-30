@@ -95,8 +95,8 @@ async function start() {
                 }
             } else if (connection === 'open') {
                 if (initialConnection) {
-                    console.log(chalk.green("Mercedes Integration Successful️ ✅"));
-                    Matrix.sendMessage(Matrix.user.id, { text: `Mercedes Integration Successful️ ✅` });
+                    console.log(chalk.green("😃 Integration Successful️ ✅"));
+                    Matrix.sendMessage(Matrix.user.id, { text: `😃 Integration Successful️ ✅` });
                     initialConnection = false;
                 } else {
                     console.log(chalk.blue("♻️ Connection reestablished after restart."));
@@ -156,7 +156,7 @@ async function init() {
 init();
 
 app.get('/', (req, res) => {
-    res.send('Hello World!, Mercedes is here To service');
+    res.send('Hello World!');
 });
 
 app.listen(PORT, () => {
