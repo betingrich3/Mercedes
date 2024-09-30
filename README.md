@@ -41,6 +41,6 @@ Deploying the bot to Heroku is simple and straightforward. Follow these steps:
 [![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://dashboard.heroku.com/new?template=https://github.com/betingrich3/Mercedes)
 
 ### ❤️Supporters I Love You❤️
-[![Stargazers repo roster for @betingrich3/Mercedes](http://reporoster.com/stars/dark/betingrich3/Mercedes)](https://github.com/betingrich/bugatti/stargazers)
+[![Stargazers repo roster for @betingrich3/Mercedes](http://reporoster.com/stars/dark/betingrich3/Mercedes)](https://github.com/betingrich3/Mercedes/stargazers)
      
-[![Forkers repo roster for @betingrich3/Mercedes](http://reporoster.com/forks/dark/betingrich3/Mercedes)](https://github.com/betingrich/bugatti/network/members)
+[![Forkers repo roster for @betingrich3/Mercedes](http://reporoster.com/forks/dark/betingrich3/Mercedes)](https://github.com/betingrich3/Mercedes/network/members)
