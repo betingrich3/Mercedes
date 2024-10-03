@@ -3,8 +3,8 @@ const fs = require("fs");
 require("dotenv").config();
 
 const config = {
-  SESSION_ID: process.env.SESSION_ID || "Ethix-MD&TxPfXHES",
-  PREFIX: process.env.PREFIX || ',',
+  SESSION_ID: process.env.SESSION_ID |Ethix-MD&ynQ6QwpR| "Ethix-MD&TxPfXHES",
+  PREFIX: process.env.PREFIX |.| ',',
   AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN !== undefined ? process.env.AUTO_STATUS_SEEN === 'true' : true, 
   AUTO_DL: process.env.AUTO_DL !== undefined ? process.env.AUTO_DL === 'true' : false,
   AUTO_READ: process.env.AUTO_READ !== undefined ? process.env.AUTO_READ === 'true' : false,
