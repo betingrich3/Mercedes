@@ -1,12 +1,13 @@
 import Tesseract from 'tesseract.js';
 import translate from 'translate-google-api';
 import { writeFile } from 'fs/promises';
-import config from '../../config.cjs';
 
-const translateCommand = async (m, sock) => {
-  const prefix = config.PREFIX;
-const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-const args = m.body.slice(prefix.length + cmd.length).trim();
+const translateCommand = async (m, sock, config) => {
+  const prefixMatch = m.body.match(/^[\\/!#.]/);
+  const prefix = prefixMatch ? prefixMatch[0] : '/';
+  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
+  const args = m.body.slice(prefix.length + cmd.length).trim().split(' ');
+
  
 
   const validCommands = ['translate', 'trt'];
@@ -18,11 +19,13 @@ const args = m.body.slice(prefix.length + cmd.length).trim();
     if (m.quoted) {
       if (m.quoted.mtype === 'imageMessage') {
         try {
-          const media = await m.quoted.download();
+          const media = await m.quoted.download(); // Download the media from the quoted message
           if (!media) throw new Error('Failed to download media.');
 
           const filePath = `./${Date.now()}.png`;
-          await writeFile(filePath, media);
+          await writeFile(filePath, media); // Save the downloaded media to a file
+
+          // Perform OCR using Tesseract.js
           const { data: { text: extractedText } } = await Tesseract.recognize(filePath, 'eng', {
             logger: m => console.log(m)
           });
@@ -31,10 +34,10 @@ const args = m.body.slice(prefix.length + cmd.length).trim();
           const translatedText = result[0];
 
           const responseMessage = `${targetLang}:\n\n${translatedText}`;
-          await sock.sendMessage(m.from, { text: responseMessage }, { quoted: m });
+          await sock.sendMessage(m.from, { text: responseMessage }, { quoted: m }); // Send the extracted and translated text back to the user
         } catch (error) {
           console.error("Error extracting and translating text from image:", error);
-          await sock.sendMessage(m.from, { text: 'Error extracting and translating text from image.' }, { quoted: m }); 
+          await sock.sendMessage(m.from, { text: 'Error extracting and translating text from image.' }, { quoted: m }); // Error handling
         }
       } else if (m.quoted.text) {
         try {
@@ -43,10 +46,10 @@ const args = m.body.slice(prefix.length + cmd.length).trim();
           const translatedText = result[0];
 
           const responseMessage = `${targetLang}:\n\n${translatedText}`;
-          await sock.sendMessage(m.from, { text: responseMessage }, { quoted: m }); 
+          await sock.sendMessage(m.from, { text: responseMessage }, { quoted: m }); // Send the translated text back to the user
         } catch (error) {
           console.error("Error translating quoted text:", error);
-          await sock.sendMessage(m.from, { text: 'Error translating quoted text.' }, { quoted: m }); 
+          await sock.sendMessage(m.from, { text: 'Error translating quoted text.' }, { quoted: m }); // Error handling
         }
       }
     } else if (text && targetLang) {
