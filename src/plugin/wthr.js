@@ -1,22 +1,39 @@
-import axios from "axios"
-let handler = async (m, { args }) => {
-if (!args[0]) throw "https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x *Give a place to search*"
-try {
-const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`)
-const res = await response
-const name = res.data.name
-const Country = res.data.sys.country
-const Weather = res.data.weather[0].description
-const Temperature = res.data.main.temp + "°C"
-const Minimum_Temperature = res.data.main.temp_min + "°C"
-const Maximum_Temperature = res.data.main.temp_max + "°C"
-const Humidity = res.data.main.humidity + "%"
-const Wind = res.data.wind.speed + "km/h"
-const wea = `https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x 「 📍 」PLACE: ${name}\n「 🗺️ 」COUNTRY: ${Country}\n「 🌤️ 」VIEW: ${Weather}\n「 🌡️ 」TEMPERATURE: ${Temperature}\n「 💠 」 MINIMUM TEMPERATURE: ${Minimum_Temperature}\n「 📛 」 MAXIMUM TEMPERATURE: ${Maximum_Temperature}\n「 💦 」HUMIDITY: ${Humidity}\n「 🌬️ 」 WINDSPEED: ${Wind}`
-m.reply(wea)
-} catch {
-return "*ERROR*"}}
-handler.help = ['climate *<place>*']
-handler.tags = ['herramientas']
-handler.command = /^(climate|weather)$/i
-export default handler
+const Weather = async (client, m, text) => {
+
+if (!text) return m.reply("provide a city/town name");
+
+const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=1ad47ec6172f19dfaf89eb3307f74785`);
+        const data = await response.json();
+
+console.log("Weather data:",data);
+
+
+        const cityName = data.name;
+        const temperature = data.main.temp;
+        const feelsLike = data.main.feels_like;
+        const minTemperature = data.main.temp_min;
+        const maxTemperature = data.main.temp_max;
+        const description = data.weather[0].description;
+        const humidity = data.main.humidity;
+        const windSpeed = data.wind.speed;
+        const rainVolume = data.rain ? data.rain['1h'] : 0;
+        const cloudiness = data.clouds.all;
+        const sunrise = new Date(data.sys.sunrise * 1000);
+        const sunset = new Date(data.sys.sunset * 1000);
+
+
+
+await m.reply(`❄️ Weather in ${cityName}
+
+🌡️ Temperature: ${temperature}°C
+📝 Description: ${description}
+❄️ Humidity: ${humidity}%
+🌀 Wind Speed: ${windSpeed} m/s
+🌧️ Rain Volume (last hour): ${rainVolume} mm
+☁️ Cloudiness: ${cloudiness}%
+🌄 Sunrise: ${sunrise.toLocaleTimeString()}
+🌅 Sunset: ${sunset.toLocaleTimeString()}`);
+
+}
+
+export default Weather;
