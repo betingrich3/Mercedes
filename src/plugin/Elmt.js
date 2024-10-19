@@ -1,40 +1,32 @@
-import fetch from 'node-fetch';
+let handler = m => m
+handler.all = async function (m) {
+  let setting = global.db.data.settings[this.user.jid]
 
-let elementHandler = async (m, { conn, text }) => {
-  if (!text) throw '*[Must] Please provide an element symbol or name*';
-
-  try {
-    let res = await fetch(`https://api.popcat.xyz/periodic-table?element=${text}`);
-
-    if (!res.ok) {
-      throw new Error(`API request failed with status ${res.status}`);
+  let bot = global.db.data.settings[this.user.jid] || {}
+  if (bot.autoBio) {
+    let _muptime
+    if (process.send) {
+      process.send('uptime')
+      _muptime =
+        (await new Promise(resolve => {
+          process.once('message', resolve)
+          setTimeout(resolve, 1000)
+        })) * 1000
     }
-
-    let buffer = await res.arrayBuffer();
-    let json = JSON.parse(Buffer.from(buffer).toString());
-
-    console.log('JSON response:', json);
-
-    let elementInfo = 
-    `*Element Information:*\n
-     • *Name:* ${json.name}\n
-     • *Symbol:* ${json.symbol}\n
-     • *Atomic Number:* ${json.atomic_number}\n
-     • *Atomic Mass:* ${json.atomic_mass}\n
-     • *Period:* ${json.period}\n
-     • *Phase:* ${json.phase}\n
-     • *Discovered By:* ${json.discovered_by}\n
-     • *Summary:* ${json.summary}`;
-
-    conn.sendFile(m.chat, json.image, 'Mercedes.jpg', elementInfo, m);
-  } catch (error) {
-    console.error(error);
-    // Handle the error appropriately
+    let muptime = clockString(_muptime)
+    let bio = `\n Mercedes ${muptime}\n\n ┃ Marisel`
+    await this.updateProfileStatus(bio).catch(_ => _)
+    setting.status = new Date() * 1
   }
-};
+}
+export default handler
 
-elementHandler.help = ['element'];
-elementHandler.tags = ['tools'];
-elementHandler.command = /^(element|ele)$/i;
-
-export default elementHandler;
+function clockString(ms) {
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [d, ' Day(s) ️', h, ' Hour(s) ', m, ' Minute(s)']
+    .map(v => v.toString().padStart(2, 0))
+    .join('')
+}
