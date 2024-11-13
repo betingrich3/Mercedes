@@ -14,15 +14,12 @@ const text = m.body.slice(prefix.length + cmd.length).trim();
     const responseTime = (end - start) / 1000;
 
     const text = `
- *Hello ${name},Get ready to ride along*
-╭━━〔 *${s.BOT}* 〕━━┈⊷
+ *Hello,Get ready to ride along*
+╭━━〔 *Mercedes* 〕━━┈⊷
 ┃▸╭───────────
-┃▸┃๏ *Creator* : ${s.OWNER_NAME}
-┃▸┃๏ *Prefix* : [ ${s.PREFIXE} ] 
-┃▸┃๏ *Mode* : *${mode}*
+┃▸┃๏ *Creator* : *Marisel*
 ┃▸┃๏ *Storage* : 𝟴/𝟭𝟯𝟮 𝗚𝗕
-┃▸┃๏ *Today's Date:* ${date} 
-┃▸┃๏ *Current Time:* ${wib} 
+┃▸┃๏ *Version* : New version 
 ┃▸└───────────···๏
 ╰──────────────┈⊷
 ╭━━〔 *𝙲𝙽𝚅𝚃𝚁* 〕━━┈⊷
