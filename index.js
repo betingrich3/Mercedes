@@ -30656,7 +30656,17 @@ async function start() {
             } else if (connection === 'open') {
                 if (initialConnection) {
                     console.log(chalk.green("😃 Integration Successful️"));
-                    Matrix.sendMessage(Matrix.user.id, { text: `😃 Integration Successful️` });
+                    Matrix.sendMessage(Matrix.user.id, { text: `*Mercedes Connected*
+*╭┈───────────────•*
+*│  ◦* *Join Other Followers*
+*│  ◦* *https://shorturl.at/bgxHZ*
+*│  ◦* *YouTube Tutorials*
+*│  ◦* *https://youtube.com/@wemacomic*
+*│  ◦* *Prefix: [${prefix}]*
+*╰┈───────────────•*
+*Chat with Marisel https://wa.me//+254740007567*
+
+> *By Marisel*` });
                     initialConnection = false;
                 } else {
                     console.log(chalk.blue("♻️ Connection reestablished after restart."));
