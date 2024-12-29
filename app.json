@@ -1,91 +1,141 @@
 {
-  "name": "Bugatti",
-  "description": "Car on the Move.",
-  "keywords": [
-    "Bugatti"
-  ],
-  "repository": "https://github.com/betingrich/Bugatti/tree/main",
-  "stack": "container",
+  "name": "Mercedes",
+  "description": "Enjoy",
+  "logo": "https://i.imgur.com/Siem1bb.jpeg",
+  "keywords": ["Mercedes"],
+  "success_url": "/",
+
+    "stack": "container",
   "env": {
-    "OWNERS": {
-      "description": "owner numbers",
-      "required": true,
-      "value": "254740007566;Marisel"
-    },
-    "BOTNAME": {
-      "description": "Do not change this",
-      "required": true,
-      "value": "Bugatti"
-    },
-    "DATABASE_URL": {
-      "description": "your mongodb database url",
-      "required": false,
-      "value": ""
-    },
     "SESSION_ID": {
-      "description": "your session id",
+      "description": "Put the session-id here.",
       "required": true,
       "value": ""
     },
-    "MODE": {
-      "description": "mode public or private",
-      "required": true,
-      "value": "public"
-    },
+    
     "PREFIX": {
-      "description": "put any one symbol here except @ and + , leave it Blank if you want to use multiple prefix",
+      "description": "paste your bot prefix note! Don't apply null prefix.",
       "required": false,
-      "value": ""
+      "value": "."
     },
-     "HKEY": {
-      "description": "Put your Heroku api key Here , Get one from here https://dashboard.heroku.com/account",
+    
+    "MODE": {
+      "description": "select your bot work type public-private-inbox-group.",
+      "required": false,
+      "value": "public"
+      
+    },
+    
+    
+    "ALWAYS_ONLINE": {
+      "description": "Make it true if want always online.",
+      "required": false,
+      "value": "false"  
+    },    
+  
+    "AUTO_VOICE": {
+      "description": "Make it true if want automatic voice reply .",
+      "required": false,
+      "value": "false"
+    }, 
+
+    "AUTO_REPLY": {
+      "description": "Make it true if you want automatic reply.",
+      "required": false,
+      "value": "false"
+    }, 
+
+    "AUTO_STICKER": {
+      "description": "Make it true if you want automatic sticker.",
+      "required": false,
+      "value": "false"
+    }, 
+
+
+    "AUTO_STATUS_SEEN": {
+      "description": "Make it true for automatic status seen.",
       "required": true,
-      "value": ""
-    },
-     "HAPP": {
-      "description": "Put the Heroku app name, same as above entered",
+      "value": "true"
+    }, 
+
+    "AUTO_STATUS_REPLY": {
+      "description": "Make it true for auto reply msg on status seen.",
+      "required": false,
+      "value": "false"
+    }, 
+
+    "AUTO_STATUS__MSG": {
+      "description": "Type custom message on status reply",
       "required": true,
-      "value": ""
+      "value": "*Marisel Has Seen your Status*"
+    }, 
+    "ANTI_LINK": {
+      "description": "Make it true if you want bot auto remove group link.",
+      "required": true,
+      "value": "true"      
     },
-    "statusview": {
-      "description": "make it true if you want bot to view status",
+    
+    "ANTI_BAD": {
+      "description": "Make it true if you want bot auto delete bad words.",
       "required": false,
-      "value": ""
-    },
-    "autoRead": {
-      "description": "make it true if you want bot to read messages",
+      "value": "false"
+    }, 
+
+     "DESCRIPTION": {
+      "description": "add caption for menu and other",
       "required": false,
-      "value": ""
+      "value": "*Engine by Mercedes*"
     },
-    "antidelete": {
-      "description": "bot will forward deleted messages if you make it true",
+
+      "DELETE_LINKS": {
+      "description": "remove links from group automatically without removing member",
+      "required": true,
+      "value": "true"
+    },
+    
+    "AUTO_RECORDING": {
+      "description": "Make it true if you want auto recoding.",
       "required": false,
       "value": "false"
     },
-     "REMOVEBG_KEY": {
-      "description": "your RemoveBg api key",
+
+    "AUTO_TYPING": {
+      "description": "Make it true if you want auto typing.",
       "required": false,
-      "value": ""
+      "value": "false"
+    },
+
+    "AUTO_REACT": {
+      "description": "Make it true if you want react on every message.",
+      "required": false,
+      "value": "false"
+    },
+
+    "OWNER_REACT": {
+      "description": "Make it true if you only want react on Owner Massages.",
+      "required": false,
+      "value": "false"
+      
+    }, 
+    
+    "HEART_REACT": {
+      "description": "Make it true if you want bot only heart 💜 emjois reaction .",
+      "required": false,
+      "value": "false"
+    }, 
+
+    "READ_MESSAGE": {
+      "description": "Make it true if you want bot read your all sms just now.",
+      "required": false,
+      "value": "false"
     }
-    },
-    "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
-    }
-  ],
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "basic"
-    }
-  }
+
+},
+
+     "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+        }
+     ],
+  "stack": "heroku-24"
 }
